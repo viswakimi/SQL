@@ -40,7 +40,18 @@ BEGIN
    DBMS_OUTPUT.PUT_LINE('Employee Name: ' || v_employee_name);
 END;
 /
-
+ 
+DECLARE
+  r_customer customers%ROWTYPE;
+BEGIN
+  -- get the information of the customer 100
+  SELECT * INTO r_customer
+  FROM customers
+  WHERE customer_id = 100;
+  -- show the customer info
+  dbms_output.put_line( r_customer.name || ', website: ' || r_customer.website );
+END;
+/
 -- 2 Multi-row Fetch using Cursors-Here you need a cursor because SELECT INTO can’t handle multiple rows.
  
 --Implicit cursor FOR loop → simple loops, read-only processing.
@@ -160,5 +171,6 @@ BEGIN
    CLOSE c_emp;
 END;
 /
+
 
 
