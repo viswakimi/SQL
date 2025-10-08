@@ -1,0 +1,10 @@
+assignment Operator (:=)
+
+Purpose: To assign a value to a variable.
+Used only in PL/SQL blocks for variables declared with DECLARE.
+Cannot be used in a condition or comparison.
+
+Equal Operator (=)
+Purpose: To compare values in conditions.
+Used in: IF, WHILE, EXIT WHEN, CASE, WHERE clause, etc.
+Cannot assign a value to a variable.
