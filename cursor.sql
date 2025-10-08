@@ -10,6 +10,9 @@ Dynamic query-REF Cursor / SYS_REFCURSOR
 
 Update/Delete/Insert check- Implicit cursor attributes (SQL%ROWCOUNT)
 
+Simple IF inside FOR loop → use cursor FOR loop.
+Need more control or advanced features → use explicit cursor.
+
 */
 
 DECLARE
@@ -122,6 +125,16 @@ END;
 /
 
 
+ BEGIN
+    FOR emp IN (SELECT * FROM employees) LOOP
+        IF emp.salary > 10000 THEN
+            DBMS_OUTPUT.PUT_LINE(emp.first_name || ' - ' || emp.salary);
+        END IF;
+    END LOOP;
+END;
+/
+
+
 --4 ️⃣ Parameterized Cursor- When you need to pass values dynamically
 
 DECLARE
@@ -178,6 +191,7 @@ BEGIN
    CLOSE c_emp;
 END;
 /
+
 
 
 
