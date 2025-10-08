@@ -42,7 +42,23 @@ END;
 /
 
 -- 2 Multi-row Fetch using Cursors-Here you need a cursor because SELECT INTO can’t handle multiple rows.
+ 
+--Implicit cursor FOR loop → simple loops, read-only processing.
 
+ --Explicit cursor → needed for:
+--Partial fetching----Fetching with conditions to stop midway
+--Using cursor attributes
+--Passing parameters to the query
+--Complex row-by-row processing */
+
+--Implicit cursor → every SQL statement you write uses it internally.
+
+--Explicit cursor → you declare it, control it manually, use it when needed.
+
+--Cursor FOR loop → simplified way to use explicit cursor (or create a temporary cursor) without manual open/fetch/close.
+
+ 
+ 
 --Implicit Cursor
 BEGIN
    UPDATE employees
@@ -75,6 +91,10 @@ END;
 
 
 -- 3️  Cursor FOR Loop [Simplified explicit cursor
+ --cannot manually stop or fetch selectively before the loop ends.cannot control fetching row by row outside the loop.
+--%ROWCOUNT, %FOUND, %NOTFOUND attributes cannot be used with implicit cursor inside the loop.
+--You cannot pass parameters to the query inside the implicit cursor easil
+ 
 
 BEGIN
    FOR emp_rec IN (SELECT first_name, salary FROM employees WHERE department_id = 50) LOOP
@@ -140,4 +160,5 @@ BEGIN
    CLOSE c_emp;
 END;
 /
+
 
