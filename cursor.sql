@@ -71,6 +71,13 @@ END;
  
  
 --Implicit Cursor
+
+ --implicit cursors when:
+--You are working with SQL statements that return a single row.
+--You don’t need row-by-row processing.
+--You don’t need cursor parameters.
+--You just need basic status info about SQL execution.
+ 
 BEGIN
    UPDATE employees
    SET salary = salary * 1.1
@@ -171,6 +178,7 @@ BEGIN
    CLOSE c_emp;
 END;
 /
+
 
 
 
