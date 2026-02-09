@@ -1,0 +1,35 @@
+--RESPONSIBILITY CLONE SCRIPT
+
+DECLARE
+  v_new_user_id   NUMBER;
+BEGIN
+  -- Get new user_id
+  SELECT user_id
+  INTO v_new_user_id
+  FROM fnd_user
+  WHERE user_name = 'DEMOSCM1';
+
+  FOR r IN (
+    SELECT responsibility_id,
+           responsibility_application_id,
+           start_date,
+           end_date
+    FROM fnd_user_resp_groups_direct
+    WHERE user_id = (
+      SELECT user_id FROM fnd_user WHERE user_name = 'DEMOSC1'
+    )
+  ) LOOP
+
+    FND_USER_RESP_GROUPS_API.INSERT_ASSIGNMENT(
+      user_id                         => v_new_user_id,
+      responsibility_id               => r.responsibility_id,
+      responsibility_application_id   => r.responsibility_application_id,
+      start_date                      => NVL(r.start_date, SYSDATE),
+      end_date                        => r.end_date
+    );
+
+  END LOOP;
+
+  DBMS_OUTPUT.PUT_LINE('Responsibilities cloned successfully');
+END;
+/
