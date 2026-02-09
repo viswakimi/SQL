@@ -7,7 +7,7 @@ BEGIN
   SELECT user_id
   INTO v_new_user_id
   FROM fnd_user
-  WHERE user_name = 'DEMOSCM1';
+  WHERE user_name = 'xxxxx';
 
   FOR r IN (
     SELECT responsibility_id,
@@ -16,7 +16,7 @@ BEGIN
            end_date
     FROM fnd_user_resp_groups_direct
     WHERE user_id = (
-      SELECT user_id FROM fnd_user WHERE user_name = 'DEMOSC1'
+      SELECT user_id FROM fnd_user WHERE user_name = 'xxxxxx'
     )
   ) LOOP
 
